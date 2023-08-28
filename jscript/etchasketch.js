@@ -30,3 +30,4 @@ document.querySelector("#maingrid").appendChild(fragment);
 // maingrid.style.display = "grid";
 // maingrid.style.gridTemplateColumns = "auto auto aut auto auto auto auto auto";
 // maingrid.style.gridTemplateRows = "auto auto auto auto auto auto auto auto";
+https://stackoverflow.com/questions/60697428/creating-multiple-elements-with-javascript
