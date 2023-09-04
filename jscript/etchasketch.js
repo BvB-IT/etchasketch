@@ -1,33 +1,54 @@
-function createDivElement(text) {
-  const div = document.createElement("div");
+let userSelection;
+let gridSize;
 
-  if (text) div.innerText = text;
-
-  return div;
+function userChoice(gridSize) {
+  userSelection = prompt("Give desired grid-size here", "gridSize");
+  userSelection = gridSize;
+  return gridSize;
 }
 
-function createSquare() {
-  const squareText = createDivElement(["col-1"], "This is a Square");
-  const row = createDivElement(["row"]);
-  row.appendChild(squareText);
+userChoice();
 
-  const squareBody = createDivElement(["square-body"]);
-  squareBody.appendChild(row);
+const grid = document.querySelector(".maingrid");
 
-  //   const square = new DocumentFragment();
-  //   return square;
+for (let i = 0; i < 4; i++) {
+  for (let j = 0; j < 4; j++) {
+    const cell = document.createElement("div");
+    cell.classList.add("cell");
+    grid.appendChild(cell);
+  }
 }
 
-const fragment = new DocumentFragment();
+// function createDivElement(text) {
+//   const div = document.createElement("div");
 
-for (let i = 0; i < 16; i++) {
-  const el = createSquare();
-  fragment.appendChild(el);
-}
+//   if (text) div.innerText = text;
 
-document.querySelector("#maingrid").appendChild(fragment);
+//   return div;
+// }
+
+// function createSquare() {
+//   const squareText = createDivElement(["col-1"], "This is a Square");
+//   const row = createDivElement(["row"]);
+//   row.appendChild(squareText);
+
+//   const squareBody = createDivElement(["square-body"]);
+//   squareBody.appendChild(row);
+
+//   //   const square = new DocumentFragment();
+//   //   return square;
+// }
+
+// const fragment = new DocumentFragment();
+
+// for (let i = 0; i < 16; i++) {
+//   const el = createSquare();
+//   fragment.appendChild(el);
+// }
+
+// document.querySelector("#maingrid").appendChild(fragment);
 
 // maingrid.style.display = "grid";
 // maingrid.style.gridTemplateColumns = "auto auto aut auto auto auto auto auto";
 // maingrid.style.gridTemplateRows = "auto auto auto auto auto auto auto auto";
-https://stackoverflow.com/questions/60697428/creating-multiple-elements-with-javascript
+// https://stackoverflow.com/questions/60697428/creating-multiple-elements-with-javascript
