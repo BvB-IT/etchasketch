@@ -1,3 +1,7 @@
+let bgColor;
+let change;
+let currentOpacity;
+
 document.getElementById(".choose button");
 document.addEventListener("click", createGrid);
 
@@ -21,28 +25,24 @@ function userChoiceRows() {
   return gridSizeRows;
 }
 
-function bgRandom() {
+function darkening(event) {
+  for (let i = 0; i < 1; i + 0.1) {
+    currentOpacity = i;
+  }
+  let darker = event.target;
+  darker.filter.style.opacity = currentOpacity;
+}
+
+console.log(currentOpacity);
+
+function bgRandom(event) {
   for (i = 0; i < 100; i++) {
     let color = ["#3C9EE7", "#E7993C", "#E73C99", "#3CE746", "#E7993C"];
-    let change = document.getElementsByTagName(".cell");
-    // document.querySelectorAll("cell");
-    change.style.background = color[Math.floor(Math.random() * color.length)];
+    bgColor = color[Math.floor(Math.random() * color.length)];
   }
+  let change = event.target;
+  change.style.backgroundColor = bgColor;
 }
-// function randomColor() {
-//   let x = Math.floor(Math.random() * 256);
-//   let y = Math.floor(Math.random() * 256);
-//   let z = Math.floor(Math.random() * 256);
-//   let Color = "rgb(" + x + "," + y + "," + z + ")";
-//   // document.body.style.background = Color;
-//   return Color;
-// }
-// function randomColor() {
-//   var color = [, "#3C9EE7", "#E7993C", "#E73C99", "#3CE746", "#E7993C"];
-//   color[Math.floor(Math.random() * color.length)];
-//   document.querySelector("div.cell").style.background = color;
-//   document.querySelector("div.cell").addEventListener("mouseover", randomColor);
-// }
 
 function createGrid() {
   let createColumns = userChoiceColumns();
@@ -59,13 +59,15 @@ function createGrid() {
     "maingrid"
   ).style.gridTemplateRows = `repeat(${createRows}, 1fr)`;
   const grid = document.querySelector(".maingrid");
+  grid.addEventListener("mousemove", bgRandom);
 
   for (let i = 0; i <= createColumns; i++) {
     for (let j = 0; j <= createRows; j++) {
       const cell = document.createElement("div");
       cell.classList.add("cell");
-      cell.addEventListener("mousemove", bgRandom);
       grid.appendChild(cell);
+      cell.addEventListener("onmouseover", bgRandom);
+      cell.addEventListener("onmouseout", darkening);
     }
   }
 }
